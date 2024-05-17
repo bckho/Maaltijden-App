@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["title"] = "Niet gevonden";
+}
+
+<div class="flex flex-column justify-content-center align-items-center">
+    <div class="flex">
+        <h1>Pagina niet gevonden.</h1>
+    </div>
+    <div class="flex">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <a class="btn btn-primary" asp-area="" asp-controller="MealPackage" asp-action="Index">Terug naar hoofdpagina</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Terug naar hoofdpagina</a>
+        }
+    </div>
+</div>

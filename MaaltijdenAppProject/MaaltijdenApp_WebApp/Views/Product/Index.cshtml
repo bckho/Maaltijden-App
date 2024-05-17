@@ -1,0 +1,29 @@
+﻿@model IQueryable<Product>
+@{
+    ViewData["title"] = "Producten overzicht";
+}
+
+<div>
+    <h1>Producten overzicht</h1>
+
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Product">Nieuw product aanmaken</a>
+
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-body">
+                        <a asp-action="Get" asp-controller="Product" asp-route-id="@product.Id">
+                            <h5>@product.Name</h5>
+                            @if (product.ContainsAlcohol)
+                            {
+                                <p><strong>18+ alleen</strong></p>
+                            }
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

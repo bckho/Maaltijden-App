@@ -1,0 +1,112 @@
+﻿@model MealPackage
+@{
+    ViewData["Title"] = "Maaltijdpakket overzicht overzicht";
+}
+
+<div>
+    <!-- Alert for errors -->
+    @if (TempData["var"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["var"]!.ToString()
+        </div>
+    }
+
+    <!-- Alert for MealPackage reservation -->
+    @if (TempData["reservation"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["reservation"]!.ToString()
+        </div>
+    }
+
+    <div class="row">
+        <h1>Maaltijdpakket overzicht</h1>
+        <a asp-action="Index" asp-controller="MealPackage">Terug naar overzicht</a>
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Datum: @Model.StartPickupDateTime.ToString("dd-MM-yyyy")</h3>
+            <h6>Ophaaltijd: @Model.StartPickupDateTime.ToString("HH:mm") - @Model.EndPickupDateTime.ToString("HH:mm")</h6>
+            <h6>Afhaallocatie: @Model.Canteen?.Location - @Model.City.ToString()</h6>
+            <h6>Soort maaltijd: @Model.MealType.ToString()</h6>
+            <h6>Prijs: €@Model.Price</h6>
+            @if (Model.IsHotMeal == true)
+            {
+                <h6>Het is een warme maaltijd.</h6>
+            }
+            @if (Model.IsEighteenPlusOnly)
+            {
+                <h6><strong>18+ alleen</strong></h6>
+            }
+            <div class="mt-2">
+                @if (User.IsInRole("employee") && Model.ReservedByStudent != null)
+                {
+                    <h6>Gereserveerd door: <strong>@Model.ReservedByStudent.FirstName @Model.ReservedByStudent.LastName</strong></h6>
+                }
+            </div>
+        </div>
+
+        <div class="col-6">
+            @if (User.IsInRole("student"))
+            {
+                @if (Model.ReservedByStudentId == null)
+                {
+                    <a class="btn btn-lg btn-primary" asp-controller="MealPackage" asp-action="CreateReservation" asp-route-id="@Model.Id.ToString()">Reserveren</a>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-lg btn-outline-secondary disabled" aria-disabled="true" disabled>Gereserveerd</button>
+                }
+            }
+
+            @if (User.IsInRole("employee") && Model.ReservedByStudentId == null)
+            {
+                <a class="btn btn-primary" asp-controller="MealPackage" asp-action="InitializeUpdate" asp-route-id="@Model.Id.ToString()">Wijzigen</a>
+                <a class="btn btn-danger" asp-controller="MealPackage" asp-action="Delete" asp-route-id="@Model.Id.ToString()">Verwijderen</a>
+            }
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <h3>Producten in deze maaltijdpakket</h3>
+        <div class="row">
+            @if (Model.ProductsIndicator != null && Model.ProductsIndicator.Any() == true)
+            {
+                @foreach (var product in Model.ProductsIndicator)
+                {
+                    <div class="col-3 mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                @if (product.Image == null)
+                                {
+                                    <img src="/media/product_placeholder.png" class="img-fluid" alt="" />
+                                }
+                                <h5 class="card-title">@product.Name</h5>
+                                @if (product.ContainsAlcohol == true)
+                                {
+                                    <h6 class="card-subtitle mb-2 text-muted">18+ alleen</h6>
+                                }
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                <p class="card-text">@product.Description</p>
+                                @if (product.ContainsAlcohol == true)
+                                {
+                                    <span>
+                                        <strong>18+ alleen</strong>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>Geen producten gevonden.</p>
+            }
+        </div>
+    </div>
+</div>

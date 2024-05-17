@@ -1,0 +1,41 @@
+﻿@model CartViewModel
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Maaltijdpakket overzicht</h5>
+        @if (Model.CartItems != null)
+        {
+            @if (Model.CartItems.Count > 0)
+            {
+                <ul class="list-group">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @item.ProductName
+                            <a class="btn btn-outline-danger" asp-controller="Cart" asp-action="RemoveProduct" asp-route-id="@item.ProductId.ToString()">Verwijder</a>
+                        </li>
+                    }
+                </ul>
+
+                @if (ViewBag.Checkout == "Update")
+                {
+                    <a class="btn btn-primary" asp-controller="Cart" asp-action="CheckoutUpdate">Bijwerken</a>
+                }
+                else if (ViewBag.Checkout == "Create")
+                {
+                    <a class="btn btn-primary" asp-controller="Cart" asp-action="Checkout">Aanmaken</a>
+                }
+            }
+            else
+            {
+                <p>Geen producten geselecteerd.</p>
+                <a class="btn btn-primary disabled" aria-disabled="true">Aanmaken</a>
+            }
+        }
+        else
+        {
+            <p>Geen producten geselecteerd.</p>
+            <a class="btn btn-primary disabled" aria-disabled="true" disabled>Aanmaken</a>
+        }
+    </div>
+</div>

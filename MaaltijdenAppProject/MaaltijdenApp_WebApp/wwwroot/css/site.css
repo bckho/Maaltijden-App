@@ -1,0 +1,61 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/**** Web styles ****/
+
+/**** Global ****/
+.navbar-main {
+    background-color: #ff5c0e;
+}
+
+.button-primary {
+    color: white;
+    background-color: #ff7d3e;
+}
+
+.content-center-spaced {
+    justify-content: center;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #ff7d3e;
+    border-color: #ff7d3e;
+}
+
+.card-login {
+    width: 25rem;
+    padding: 50px;
+}
+
+.card-registration {
+    width: 30rem;
+    padding: 50px;
+}
+
+.align-content-center {
+    justify-content: center;
+    align-items: center;
+}

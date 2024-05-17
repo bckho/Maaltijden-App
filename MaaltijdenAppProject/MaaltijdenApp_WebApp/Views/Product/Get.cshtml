@@ -1,0 +1,27 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product overzicht";
+}
+
+<div>
+    <h1>Product overzicht</h1>
+    <a asp-action="Index" asp-controller="Product">Terug naar overzicht</a>
+    <div class="col">
+        <div class="row">
+            <h4>@Model.Name</h4>
+        </div>
+        <div class="row">
+            <p>@Model.Description</p>
+        </div>
+        <div class="row">
+            @if (Model.ContainsAlcohol)
+            {
+                <p><strong>Bevat alcohol:</strong> Ja</p>
+            }
+            else
+            {
+                <p><strong>Bevat alcohol:</strong> Nee</p>
+            }
+        </div>
+    </div>
+</div>

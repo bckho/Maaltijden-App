@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaaltijdenApp_Core", "MaaltijdenApp_Core\MaaltijdenApp_Core.csproj", "{7E8B6A93-A7F3-4C65-9CE2-084885DC3379}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaaltijdenApp_EFSQL_MaaltijdenDb", "MaaltijdenApp_EFSQL_MaaltijdenDb\MaaltijdenApp_EFSQL_MaaltijdenDb.csproj", "{8D79F401-766B-4729-8537-F1803F3FEE84}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaaltijdenApp_WebAPI", "MaaltijdenApp_WebAPI\MaaltijdenApp_WebAPI.csproj", "{41228A6E-C048-44AA-A590-0FE384EEA7C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaaltijdenApp_IFSQL_IdentityDb", "MaaltijdenApp_IFSQL_IdentityDb\MaaltijdenApp_IFSQL_IdentityDb.csproj", "{F7B2CB98-9460-4FB1-80B0-32145CB623B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaaltijdenApp_WebApp", "MaaltijdenApp_WebApp\MaaltijdenApp_WebApp.csproj", "{6203000E-85A3-4A3B-886D-CE09375F19F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaaltijdenApp_Tests", "MaaltijdenApp_Tests\MaaltijdenApp_Tests.csproj", "{0E6BF24A-7BD2-4263-A2FA-356690693C88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E8B6A93-A7F3-4C65-9CE2-084885DC3379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8B6A93-A7F3-4C65-9CE2-084885DC3379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8B6A93-A7F3-4C65-9CE2-084885DC3379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8B6A93-A7F3-4C65-9CE2-084885DC3379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D79F401-766B-4729-8537-F1803F3FEE84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D79F401-766B-4729-8537-F1803F3FEE84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D79F401-766B-4729-8537-F1803F3FEE84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D79F401-766B-4729-8537-F1803F3FEE84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41228A6E-C048-44AA-A590-0FE384EEA7C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41228A6E-C048-44AA-A590-0FE384EEA7C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41228A6E-C048-44AA-A590-0FE384EEA7C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41228A6E-C048-44AA-A590-0FE384EEA7C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7B2CB98-9460-4FB1-80B0-32145CB623B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B2CB98-9460-4FB1-80B0-32145CB623B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7B2CB98-9460-4FB1-80B0-32145CB623B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B2CB98-9460-4FB1-80B0-32145CB623B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6203000E-85A3-4A3B-886D-CE09375F19F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6203000E-85A3-4A3B-886D-CE09375F19F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6203000E-85A3-4A3B-886D-CE09375F19F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6203000E-85A3-4A3B-886D-CE09375F19F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6BF24A-7BD2-4263-A2FA-356690693C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6BF24A-7BD2-4263-A2FA-356690693C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6BF24A-7BD2-4263-A2FA-356690693C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6BF24A-7BD2-4263-A2FA-356690693C88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD55A432-13CC-4A24-A1F1-B41DEA755DDE}
+	EndGlobalSection
+EndGlobal

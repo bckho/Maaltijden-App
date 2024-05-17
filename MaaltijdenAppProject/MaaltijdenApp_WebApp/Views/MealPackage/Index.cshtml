@@ -1,0 +1,106 @@
+﻿@model IndexModel
+@{
+    ViewData["title"] = "Maaltijdpakketten overzicht";
+}
+
+<div>
+    <!-- Alert for MealPackage Deletion -->
+    @if (TempData["var"] != null)
+    {
+        <div class="alert alert-primary" role="alert">
+            @TempData["var"]!.ToString()
+        </div>
+    }
+
+    <!-- Alert for MealPackage reservation -->
+    @if (TempData["reservation"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["reservation"]!.ToString()
+        </div>
+    }
+
+    <h1>Huidige aanbod</h1>
+
+    @if (User.Identity?.IsAuthenticated == true && User.IsInRole("employee"))
+    {
+        <a class="btn btn-primary" asp-action="Initialize" asp-controller="MealPackage">Aanmaken</a>
+    }
+
+    <!-- FILTERS -->
+    <div class="row mt-3">
+        <h4>Filters</h4>
+        <div class="form-row align-items-center">
+            <form asp-action="Index" asp-controller="MealPackage" method="post">
+
+                <div class="col-auto">
+                    <label class="sr-only" asp-for="@Model.CanteenCity">Kantine</label>
+                    <select class="form-select mb-2" asp-for="@Model.CanteenCity" asp-items="Html.GetEnumSelectList<CityEnum>()">
+                        <option selected="selected" value="">Alle</option>
+                    </select>
+                </div>
+
+                @if (User.IsInRole("employee"))
+                {
+                    <div class="col-auto">
+                        <label class="sr-only" asp-for="@Model.IsReserved">Gereserveerd?</label>
+                        <select class="form-select mb-2" asp-for="@Model.IsReserved">
+                            <option selected="selected" value="">Alle</option>
+                            <option value="false">Nee</option>
+                            <option value="true">Ja</option>
+                        </select>
+                    </div>
+                }
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LIST VIEW -->
+    <div class="row mt-3">
+        @if (Model.MealPackages == null || Model.MealPackages!.Any() == false)
+        {
+            <p>Er zijn geen beschikbare maaltijdpakketten.</p>
+        }
+        else
+        {
+            @foreach (var mp in Model.MealPackages)
+            {
+                <div class="col-sm">
+                    <div class="card" style="width: 16rem;">
+                        <img class="card-img-top" src="~/media/meal_placeholder.jpg" height="150" />
+                        <div class="card-body">
+
+                            <a asp-action="Get" asp-controller="MealPackage" asp-route-id="@mp.Id.ToString()">
+                                <h5 class="card-title">@mp.MealType.ToString()</h5>
+                                <p class="card-subtitle">Ophaaldatum: @mp.StartPickupDateTime.ToString("dd-MM-yyyy")</p>
+                                <p class="card-text">Tijd: @mp.StartPickupDateTime.ToString("hh:mm") - @mp.EndPickupDateTime.ToString("HH:mm")</p>
+                                <p class="card-text">@mp.Canteen!.Location</p>
+
+                                @if (mp.IsEighteenPlusOnly)
+                                {
+                                    <span class="card-text"><strong>18+ alleen</strong></span>
+                                }
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            @if (User.IsInRole("student"))
+                            {
+                                @if (mp.ReservedByStudentId != null)
+                                {
+                                    <button class="btn btn-outline disabled" aria-disabled="true">Gereserveerd</button>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" asp-controller="MealPackage" asp-action="CreateReservation" asp-route-id="@mp.Id.ToString()">Reserveren</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

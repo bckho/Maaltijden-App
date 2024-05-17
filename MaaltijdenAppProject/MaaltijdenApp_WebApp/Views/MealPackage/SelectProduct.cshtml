@@ -1,0 +1,48 @@
+﻿@model IQueryable<Product>
+@{
+    ViewData["Title"] = "Selecteer producten";
+}
+
+<div>
+    <h1>Selecteer producten</h1>
+    <p>Voeg een product toe aan het maaltijdpakket.</p>
+
+    <a class="btn btn-danger" asp-action="Index" asp-controller="MealPackage">Maaltijdpakket annuleren</a>
+
+    <div class="mt-3">
+        <div class="row">
+            <vc:cart></vc:cart>
+        </div>
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-3 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            @if (product.Image == null)
+                            {
+                                <img src="/media/product_placeholder.png" class="img-fluid" alt="" />
+                            }
+                            <h5>@product.Name</h5>
+
+                            @if (product.ContainsAlcohol == true)
+                            {
+                                <p>
+                                    <strong>18+ alleen</strong>
+                                </p>
+                            }
+
+                            <a class="btn btn-primary"
+                               asp-action="AddProduct"
+                               asp-controller="Cart"
+                               asp-route-id="@product.Id">
+                                Toevoegen
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

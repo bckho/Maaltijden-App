@@ -1,0 +1,42 @@
+﻿@model IQueryable<MealPackage>
+@{
+    ViewData["title"] = "Mijn reserveringen";
+}
+
+<div>
+    <h1>Mijn reserveringen</h1>
+    <p>Jouw gemaakte reserveringen worden hieronder getoond.</p>
+
+    <div class="row">
+        @if (Model.Any() == false)
+        {
+            <h5 class="text-center">Geen reserveringen gevonden.</h5>
+        }
+        else
+        {
+            @foreach (var mp in Model)
+            {
+                <div class="col-sm">
+                    <div class="card" style="width: 16rem;">
+                        <img class="card-img-top" src="~/media/meal_placeholder.jpg" height="150" />
+                        <div class="card-body">
+
+                            <a asp-action="Get" asp-controller="MealPackage" asp-route-id="@mp.Id.ToString()">
+                                <h5 class="card-title">@mp.MealType.ToString()</h5>
+                                <p class="card-subtitle">Ophaaldatum: @mp.StartPickupDateTime.ToString("dd-MM-yyyy")</p>
+                                <p class="card-text">Tijd: @mp.StartPickupDateTime.ToString("hh:mm") - @mp.EndPickupDateTime.ToString("HH:mm")</p>
+                                <p class="card-text">@mp.Canteen!.Location</p>
+
+                                @if (mp.IsEighteenPlusOnly)
+                                {
+                                    <span class="card-text"><strong>18+ alleen</strong></span>
+                                }
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
